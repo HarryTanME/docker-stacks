@@ -1,6 +1,6 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
-FROM jupyter/scipy-notebook
+FROM wodeai/scipy-notebook
 
 MAINTAINER Jupyter Project <jupyter@googlegroups.com>
 
