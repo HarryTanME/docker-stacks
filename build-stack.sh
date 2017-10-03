@@ -32,7 +32,7 @@ docker tag wodeai/r-notebook 903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai
 docker tag wodeai/tensorflow-notebook 903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:tensorflow-notebook
 docker tag wodeai/datascience-notebook 903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:datascience-notebook
 docker tag wodeai/pyspark-notebook 903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:pyspark-notebook
-docker tag wodeai/all-spar-notebook 903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:all-spar-notebook
+docker tag wodeai/all-spark-notebook 903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:all-spark-notebook
 
 docker push  903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:base-notebook
 docker push  903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:minimal-notebook
@@ -41,6 +41,6 @@ docker push  903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:r-notebook
 docker push  903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:tensorflow-notebook
 docker push  903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:datascience-notebook
 docker push  903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:pyspark-notebook
-docker push  903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:all-spar-notebook
+docker push  903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:all-spark-notebook
 
 

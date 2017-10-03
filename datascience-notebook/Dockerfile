@@ -13,7 +13,14 @@ RUN apt-get update && \
     gfortran \
     gcc && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-
+    
+# Install XGBoost library
+RUN cd /tmp && \
+    git clone --recursive https://github.com/dmlc/xgboost && \
+    cd xgboost && \
+    make -j4 && \
+    cd python-package; python setup.py install
+    
 # Julia dependencies
 # install Julia packages in /opt/julia instead of $HOME
 ENV JULIA_PKGDIR=/opt/julia
@@ -78,3 +85,36 @@ RUN julia -e 'Pkg.init()' && \
     rm -rf $HOME/.local && \
     fix-permissions $JULIA_PKGDIR $CONDA_DIR/share/jupyter
 
+RUN mkdir /home/$NB_USER/.jupyter/
+  
+COPY jupyter_notebook_config.py /home/$NB_USER/.jupyter/jupyter_notebook_config.py
+COPY custom.js /home/$NB_USER/.jupyter/custom/
+
+
+USER root
+
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh 
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libncurses5-dev  \
+    software-properties-common  \
+    libjpeg8-dev && \
+    ln -s /usr/lib/x86_64-linux-gnu/libjpeg.so /usr/lib && \
+    apt-get install -y libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev
+
+USER $NB_USER
+
+COPY requirements.txt /home/$NB_USER/
+RUN conda create -y -n py27 python=2.7 && \
+    source activate py27 && \
+    conda install notebook ipykernel && \
+    ipython kernel install --user && \
+    conda install -y bcolz && \
+    pip install -r ~/requirements.txt && \    
+    source deactivate  && \
+    source activate root  && \
+    conda install notebook ipykernel && \
+    ipython kernel install --user && \
+    pip install -r ~/requirements.txt && \
+    source deactivate  && \
+    rm -f /home/$NB_USER/requirements.txt
