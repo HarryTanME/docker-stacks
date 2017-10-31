@@ -18,7 +18,7 @@ USER $NB_USER
 # Remove pyqt and qt pulled in for matplotlib since we're only ever going to
 # use notebook-friendly backends in these images
 RUN conda install --quiet --yes \
-    'nomkl' \
+    'mkl-service' \
     'ipywidgets=7.0*' \
     'pandas=0.19*' \
     'numexpr=2.6*' \

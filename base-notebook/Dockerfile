@@ -60,7 +60,7 @@ RUN mkdir /home/$NB_USER/work && \
     fix-permissions /home/$NB_USER
 
 # Install conda as jovyan and check the md5 sum provided on the download site
-ENV MINICONDA_VERSION 4.3.21
+ENV MINICONDA_VERSION 4.3.30
 RUN cd /tmp && \
     wget --quiet https://repo.continuum.io/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh && \
     echo "c1c15d3baba15bf50293ae963abef853 *Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh" | md5sum -c - && \
@@ -75,9 +75,9 @@ RUN cd /tmp && \
 
 # Install Jupyter Notebook and Hub
 RUN conda install --quiet --yes \
-    'notebook=5.0.*' \
-    'jupyterhub=0.7.*' \
-    'jupyterlab=0.27.*' \
+    'notebook=5.2.*' \
+    'jupyterhub=0.8.*' \
+    'jupyterlab=0.28.*' \
     && conda clean -tipsy && \
     fix-permissions $CONDA_DIR
 
