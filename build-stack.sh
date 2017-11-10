@@ -36,6 +36,8 @@ docker build -t wodeai/datascience .
 #docker build -t wodeai/pyspark-notebook .
 #cd ../all-spark-notebook
 #docker build -t wodeai/all-spark-notebook .
+cd ../dl-gpu
+docker build -t wodeai/deeplearning-gpu .
 cd ..
 
 
@@ -50,6 +52,7 @@ docker tag wodeai/deeplearning 903030154846.dkr.ecr.us-west-2.amazonaws.com/wode
 docker tag wodeai/datascience 903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:datascience
 #docker tag wodeai/pyspark-notebook 903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:pyspark-notebook
 #docker tag wodeai/all-spark-notebook 903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:all-spark-notebook
+docker tag wodeai/deeplearning-gpu 903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:deeplearning-gpu
 
 docker push  903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:base-notebook
 docker push  903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:minimal-notebook
@@ -59,5 +62,5 @@ docker push  903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:deeplearning
 docker push  903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:datascience
 #docker push  903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:pyspark-notebook
 #docker push  903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:all-spark-notebook
-
+docker push  903030154846.dkr.ecr.us-west-2.amazonaws.com/wodeai-nb:deeplearning-gpu
 
