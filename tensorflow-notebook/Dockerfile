@@ -32,10 +32,10 @@ RUN source activate py27 && \
     source deactivate  
     
 
-#RUN source activate py27 && \
-#    pip install http://download.pytorch.org/whl/cu75/torch-0.2.0.post3-cp27-cp27mu-manylinux1_x86_64.whl  && \
-#    pip install torchvision  && \
-#    source deactivate    
+RUN source activate py27 && \
+    pip install http://download.pytorch.org/whl/cu75/torch-0.2.0.post3-cp27-cp27mu-manylinux1_x86_64.whl  && \
+    pip install torchvision  && \
+    source deactivate    
     
 USER root
 WORKDIR /root/

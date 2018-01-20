@@ -58,7 +58,9 @@ docs/_build/
 
 # PyBuilder
 target/
-
+.ipynb_checkpoints/
+base-notebook/jupyterhub/
+*/.ipynb_checkpoints/
 # Mac OS X
 .DS_Store
 

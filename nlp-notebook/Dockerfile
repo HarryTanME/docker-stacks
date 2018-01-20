@@ -27,4 +27,9 @@ RUN source activate py27 && \
     source deactivate
     
 ENV NLTK_DATA="/home/$NB_USER/shared/data/common_data/nltk_data"
-    
+
+
+COPY "Welcome_to_NLP.ipynb" /home/$NB_USER/
+USER root
+RUN chown $NB_USER:users /home/$NB_USER/Welcome_to_NLP.ipynb
+USER $NB_USER

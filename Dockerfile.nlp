@@ -1,0 +1,2 @@
+FROM wodeai/nlp:latest
+

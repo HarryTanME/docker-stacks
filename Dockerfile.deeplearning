@@ -1,0 +1,9 @@
+FROM wodeai/deeplearning:latest
+
+USER root
+WORKDIR /root
+COPY . /root
+RUN  pip install -r dev-requirements.txt -e . && \
+     chown $NB_USER /root
+USER $NB_USER
+WORKDIR $HOME

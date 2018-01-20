@@ -3,7 +3,7 @@
 
 # Ubuntu 16.04 (xenial) from 2017-07-23
 # https://github.com/docker-library/official-images/commit/0ea9b38b835ffb656c497783321632ec7f87b60c
-FROM ubuntu@sha256:84c334414e2bfdcae99509a6add166bbb4fa4041dc3fa6af08046a66fed3005f
+FROM ubuntu:xenial
 
 MAINTAINER Jupyter Project <jupyter@googlegroups.com>
 
@@ -36,7 +36,7 @@ RUN wget --quiet https://github.com/krallin/tini/releases/download/v0.10.0/tini 
 ENV CONDA_DIR=/opt/conda \
     SHELL=/bin/bash \
     NB_USER=wode-user \
-    NB_UID=1000 \
+    NB_UID=500 \
     NB_GID=100 \
     LC_ALL=en_US.UTF-8 \
     LANG=en_US.UTF-8 \
@@ -57,6 +57,8 @@ USER $NB_USER
 
 # Setup work directory for backward-compatibility
 RUN mkdir /home/$NB_USER/work && \
+    fix-permissions /home/$NB_USER && \
+    mkdir /home/$NB_USER/outputs && \
     fix-permissions /home/$NB_USER
 
 # Install conda as jovyan and check the md5 sum provided on the download site
@@ -83,6 +85,11 @@ RUN conda install --quiet --yes \
 
 USER root
 
+WORKDIR /root
+COPY ./jupyterhub/ /root
+RUN  pip install -r dev-requirements.txt -e . && \
+     chown $NB_USER /root
+     
 EXPOSE 8888
 WORKDIR $HOME
 

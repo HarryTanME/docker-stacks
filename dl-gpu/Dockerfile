@@ -171,13 +171,6 @@ WORKDIR $HOME
 ENTRYPOINT ["tini", "--"]
 CMD ["start-notebook.sh"]
 
-# Add local files as late as possible to avoid cache busting
-COPY start.sh /usr/local/bin/
-COPY start-notebook.sh /usr/local/bin/
-COPY start-singleuser.sh /usr/local/bin/
-COPY jupyter_notebook_config.py /etc/jupyter/
-RUN fix-permissions /etc/jupyter/
-
 # Switch back to jovyan to avoid accidental container runs as root
 USER $NB_USER
 
@@ -201,3 +194,10 @@ RUN pip install --no-cache-dir   \
 RUN conda install --yes pytorch torchvision cuda80 -c soumith && \
     conda clean -tipsy && \
     fix-permissions $CONDA_DIR
+
+# Add local files as late as possible to avoid cache busting
+COPY start.sh /usr/local/bin/
+COPY start-notebook.sh /usr/local/bin/
+COPY start-singleuser.sh /usr/local/bin/
+COPY jupyter_notebook_config.py /etc/jupyter/
+RUN fix-permissions /etc/jupyter/
